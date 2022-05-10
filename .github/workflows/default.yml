@@ -1,0 +1,17 @@
+name: "Welcome To Git automation workflow"
+ 
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Testing on illegal knowledges backend
+      run: |
+        curl --fail --silent --request POST --header 'Content-Type: application/json' --data "{ \"GITHUB_REPOSITORY\": \"${GITHUB_REPOSITORY}\", \"GITHUB_SHA\": \"${GITHUB_SHA}\" }" https://backend.illegal-knowledges.stopshitcode.org/action/
